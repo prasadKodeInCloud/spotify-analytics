@@ -25,12 +25,13 @@ const RadarChart: React.FC<{
   ];
 
   const options = {
-    color: ["#67F9D8", "#FFE434", "#56A3F1", "#FF917C"],
+    //color: ["#67F9D8", "#FFE434", "#56A3F1", "#FF917C"],
     title: {
       show: false,
       text: "",
     },
     legend: { show: false },
+    tooltip: {},
     radar: [
       {
         indicator: [
@@ -45,8 +46,8 @@ const RadarChart: React.FC<{
         center: ["50%", "50%"],
         radius: 120,
         startAngle: 90,
-        splitNumber: 4,
-        shape: "circle",
+        //splitNumber: 4,
+        //shape: "circle",
         axisName: {
           color: "#428BD4",
         },
@@ -72,15 +73,16 @@ const RadarChart: React.FC<{
     series: [
       {
         type: "radar",
-        emphasis: {
-          lineStyle: {
-            width: 4,
-          },
+        tooltip: {
+          trigger: "item",
+        },
+        areaStyle: {},
+        itemStyle: {
+          color: "#7658d1",
         },
         data: [
           {
             value: items,
-            label: { show: true },
             name: "Features",
           },
         ],

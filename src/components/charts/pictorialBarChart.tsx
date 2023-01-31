@@ -77,7 +77,7 @@ const PictorialBarChart: React.FC<{
         symbolBoundingData: bodyMax,
         label: labelSetting,
         itemStyle: {
-          color: "#3d91f4",
+          color: "#7658d1",
         },
         data: [
           {

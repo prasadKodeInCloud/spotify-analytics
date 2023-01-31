@@ -14,23 +14,31 @@ const Track: React.FC<{
 
   return (
     <div>
-      <div className="flex flex-wrap md:flex-1 gap-1">
-        <div className=" grow  bg-cyan-400 h-52 w-44">01</div>
-        <div className=" bg-cyan-200 h-52 w-52 grow">02</div>
-        <div className="bg-cyan-400 h-52 basis-1/2 grow">03</div>
+      <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
+        <div className=" grow  border border-solid border-gray-200 h-52 w-44">
+          01
+        </div>
+        <div className=" border border-solid border-gray-200 h-52 w-52 grow">
+          02
+        </div>
+        <div className="border border-solid border-gray-200 h-52 basis-1/2 grow">
+          03
+        </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
-        <div className="basis-1/4 grow  h-1/4  bg-cyan-400">
+        <div className="basis-1/2 grow   h-1/4 border border-solid border-gray-200 ">
           <PictorialBarChart trackFeatures={trackFeatures} />
         </div>
-        <div className=" bg-cyan-200 h-1/4 grow ">
+        <div className=" h-1/4 grow  border border-solid border-gray-200">
           <div className="flex place-items-center justify-center">
             <RadarChart trackFeatures={trackFeatures} />
           </div>
         </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
-        <div className="grow bg-cyan-200 h-52 w-42">06</div>
+        <div className="grow border border-solid border-gray-200 h-52 w-42">
+          06
+        </div>
       </div>
     </div>
   );
