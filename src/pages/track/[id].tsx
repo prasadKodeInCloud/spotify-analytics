@@ -1,3 +1,4 @@
+import RadarChart from "@/components/charts/radarChart";
 import { spotifyClient } from "@/lib/spotify-client";
 import { useEffect } from "react";
 
@@ -19,7 +20,11 @@ const Track: React.FC<{
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
         <div className="basis-1/4 grow   bg-cyan-400 h-52">04</div>
-        <div className=" bg-cyan-200 h-52 grow">05</div>
+        <div className=" bg-cyan-200 h-1/4 grow ">
+          <div className="flex place-items-center justify-center">
+            <RadarChart trackFeatures={trackFeatures} />
+          </div>
+        </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
         <div className="grow bg-cyan-200 h-52 w-42">06</div>
