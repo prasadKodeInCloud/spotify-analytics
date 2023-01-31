@@ -1,4 +1,15 @@
-const Track = () => {
+import { spotifyClient } from "@/lib/spotify-client";
+import { useEffect } from "react";
+
+const Track: React.FC<{
+  track: SpotifyApi.SingleTrackResponse;
+  trackFeatures: SpotifyApi.AudioFeaturesResponse;
+  trackAnalytics: SpotifyApi.AudioAnalysisResponse;
+}> = ({ track, trackFeatures, trackAnalytics }) => {
+  console.log("###track info: ", track);
+  console.log("###trackFeatures info: ", trackFeatures);
+  console.log("###trackAnalytics info: ", trackAnalytics);
+
   return (
     <div>
       <div className="flex flex-wrap md:flex-1 gap-1">
@@ -18,3 +29,24 @@ const Track = () => {
 };
 
 export default Track;
+
+export async function getServerSideProps(context: any) {
+  const { id } = context.query;
+  const grantResponse = await spotifyClient.clientCredentialsGrant();
+  const trackId = id;
+
+  spotifyClient.setAccessToken(grantResponse.body.access_token);
+  const [track, trackFeatures, trackAnalytics] = await Promise.all([
+    spotifyClient.getTrack(trackId),
+    spotifyClient.getAudioFeaturesForTrack(trackId),
+    spotifyClient.getAudioAnalysisForTrack(trackId),
+  ]);
+
+  return {
+    props: {
+      track: await track.body,
+      trackFeatures: await trackFeatures.body,
+      trackAnalytics: await trackAnalytics.body,
+    },
+  };
+}
