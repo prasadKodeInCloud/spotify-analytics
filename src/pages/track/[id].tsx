@@ -1,5 +1,7 @@
 import PictorialBarChart from "@/components/charts/pictorialBarChart";
 import RadarChart from "@/components/charts/radarChart";
+import AudioSectionsChart from "@/components/charts/audioSectionsChart";
+
 import { spotifyClient } from "@/lib/spotify-client";
 import BatteryGauge from "react-battery-gauge";
 import { useEffect } from "react";
@@ -79,7 +81,7 @@ const Track: React.FC<{
               </div>
               <div>
                 <span>Popularity </span>
-                <span className="inline-block px-2 text-sm text-white bg-green-300 rounded">
+                <span className="inline-block px-2 text-sm text-white bg-green-200 rounded">
                   {track.popularity}%
                 </span>
               </div>
@@ -116,8 +118,8 @@ const Track: React.FC<{
         </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
-        <div className="grow border border-solid border-gray-200 h-52 w-42 shadow-md hover:shadow-lg">
-          06
+        <div className="grow border border-solid border-gray-200 h-1/4 w-42 shadow-md hover:shadow-lg">
+          <AudioSectionsChart sections={trackAnalytics.sections} />
         </div>
       </div>
     </div>
