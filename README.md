@@ -1,5 +1,7 @@
 ## Introduction
 
+![Spotify analytics](https://www.linkpicture.com/q/spotify-analytics.png)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), [tailwind](https://tailwindcss.com/) and [echarts](https://echarts.apache.org/) to visualise spotify web api track analytics and features.
 
 ## Getting Started

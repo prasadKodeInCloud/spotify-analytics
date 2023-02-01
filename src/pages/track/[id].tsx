@@ -51,10 +51,6 @@ const Track: React.FC<{
   trackFeatures: SpotifyApi.AudioFeaturesResponse;
   trackAnalytics: SpotifyApi.AudioAnalysisResponse;
 }> = ({ track, trackFeatures, trackAnalytics }) => {
-  console.log("###track info: ", track);
-  console.log("###trackFeatures info: ", trackFeatures);
-  console.log("###trackAnalytics info: ", trackAnalytics);
-
   const loudnessGourge = {
     name: "Loudness",
     min: -60,
