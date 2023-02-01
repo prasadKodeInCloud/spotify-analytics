@@ -1,7 +1,46 @@
 import PictorialBarChart from "@/components/charts/pictorialBarChart";
 import RadarChart from "@/components/charts/radarChart";
 import { spotifyClient } from "@/lib/spotify-client";
+import BatteryGauge from "react-battery-gauge";
 import { useEffect } from "react";
+
+const batteryOptions = {
+  batteryBody: {
+    strokeWidth: 2,
+    cornerRadius: 6,
+    fill: "none",
+    strokeColor: "#77eae0",
+  },
+  batteryCap: {
+    fill: "none",
+    strokeWidth: 2,
+    strokeColor: "#77eae0",
+    cornerRadius: 2,
+    capToBodyRatio: 0.4,
+  },
+  batteryMeter: {
+    fill: "#77eae0",
+    lowBatteryValue: 15,
+    lowBatteryFill: "#eb1e32",
+    outerGap: 1,
+    noOfCells: 1,
+    interCellsGap: 1,
+  },
+  readingText: {
+    lightContrastColor: "#111",
+    darkContrastColor: "#7658d1",
+    lowBatteryColor: "red",
+    fontFamily: "ui-sans-serif",
+    fontSize: 18,
+    showPercentage: true,
+  },
+  chargingFlash: {
+    scale: undefined,
+    fill: "orange",
+    animated: true,
+    animationDuration: 200,
+  },
+};
 
 const Track: React.FC<{
   track: SpotifyApi.SingleTrackResponse;
@@ -15,14 +54,13 @@ const Track: React.FC<{
   return (
     <div className="p-3">
       <div className="flex flex-wrap md:flex-1 gap-1 ">
-        <div className=" grow border border-solid border-gray-200 h-52 w-1/5 hover:shadow-lg p-4">
-          <div className="flex shrink-0 items-start justify-between ">
-            <div>
+        <div className=" grow border border-solid border-gray-200 h-52  shadow-md hover:shadow-lg p-4">
+          <div className="flex gap-6">
+            <div style={{ width: "180px" }}>
               <img
                 src={track.album.images[1].url}
                 style={{
                   height: "180px",
-                  width: "178px",
                 }}
                 alt=""
                 className="absolute object-cover"
@@ -31,7 +69,7 @@ const Track: React.FC<{
             </div>
 
             <div>
-              <div className="flex items-start justify-between">
+              <div>
                 <div className="flex flex-col space-y-2">
                   <span className="text-lg font-semibold">{track.name}</span>
                   <span className="text-gray-400">
@@ -51,6 +89,14 @@ const Track: React.FC<{
                   {Math.round((track.duration_ms * 100) / (60 * 1000)) / 100}{" "}
                   mins
                 </span>
+              </div>
+              <div className="pt-4">
+                <span>Energy </span>
+                <BatteryGauge
+                  value={trackFeatures.energy * 100}
+                  size={60}
+                  customization={batteryOptions}
+                />
               </div>
             </div>
           </div>
