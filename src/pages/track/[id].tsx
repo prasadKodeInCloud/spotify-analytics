@@ -4,9 +4,9 @@ import AudioSectionsChart from "@/components/charts/audioSectionsChart";
 
 import { spotifyClient } from "@/lib/spotify-client";
 import BatteryGauge from "react-battery-gauge";
-import { useEffect } from "react";
 import GuageChart from "@/components/charts/guageChart";
 import BpmChart from "@/components/charts/bpmChart";
+import BeatChart from "@/components/charts/beatChart";
 
 const batteryOptions = {
   batteryBody: {
@@ -120,25 +120,25 @@ const Track: React.FC<{
             </div>
           </div>
         </div>
-        <div className="border border-solid border-gray-200 h-52 basis-1/3 grow shadow-md hover:shadow-lg">
-          03
+        <div className="border border-solid border-gray-200 h-52 basis-1/3 grow shadow-md hover:shadow-lg p-4">
+          <BeatChart trackAnalytics={trackAnalytics} />
         </div>
         <div className="border border-solid border-gray-200 h-52 w-60 grow shadow-md hover:shadow-lg">
           <GuageChart params={loudnessGourge} />
         </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
-        <div className="basis-1/2 grow  h-1/4 border border-solid border-gray-200 shadow-md hover:shadow-lg">
+        <div className="basis-1/2 grow  h-1/4 border border-solid border-gray-200 shadow-md hover:shadow-lg p-4">
           <PictorialBarChart trackFeatures={trackFeatures} />
         </div>
-        <div className=" h-1/4 grow  border border-solid border-gray-200  shadow-md hover:shadow-lg">
+        <div className=" h-1/4 grow  border border-solid border-gray-200  shadow-md hover:shadow-lg p-4">
           <div className="flex place-items-center justify-center">
             <RadarChart trackFeatures={trackFeatures} />
           </div>
         </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
-        <div className="grow border border-solid border-gray-200 h-1/4 w-42 shadow-md hover:shadow-lg">
+        <div className="grow border border-solid border-gray-200 h-1/3 w-42 shadow-md hover:shadow-lg p-4">
           <AudioSectionsChart sections={trackAnalytics.sections} />
         </div>
       </div>

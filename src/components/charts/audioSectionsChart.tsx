@@ -24,7 +24,7 @@ const AudioSectionsChart: React.FC<{
 
   const option = {
     title: {
-      text: "Track Analytics",
+      text: "Sections",
       left: "center",
     },
     tooltip: {
@@ -184,6 +184,7 @@ const AudioSectionsChart: React.FC<{
         type: "line",
         symbolSize: 8,
         data: tempoList,
+        itemStyle: { color: "#f5c998", width: 4 },
       },
       {
         name: "Loudness",
@@ -200,6 +201,7 @@ const AudioSectionsChart: React.FC<{
         xAxisIndex: 2,
         yAxisIndex: 2,
         data: keys,
+        itemStyle: { color: "#7658d1", width: 4 },
       },
       {
         name: "Mode",
@@ -208,6 +210,7 @@ const AudioSectionsChart: React.FC<{
         xAxisIndex: 3,
         yAxisIndex: 3,
         data: modes,
+        itemStyle: { color: "#26c3bf", width: 4 },
       },
     ],
   };
