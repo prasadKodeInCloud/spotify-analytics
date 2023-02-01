@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.track-info {
+  width: 100px;
+  font-size: 14px;
+}

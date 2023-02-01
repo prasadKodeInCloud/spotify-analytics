@@ -25,7 +25,6 @@ const RadarChart: React.FC<{
   ];
 
   const options = {
-    //color: ["#67F9D8", "#FFE434", "#56A3F1", "#FF917C"],
     title: {
       show: false,
       text: "",
@@ -46,16 +45,14 @@ const RadarChart: React.FC<{
         center: ["50%", "50%"],
         radius: 120,
         startAngle: 90,
-        //splitNumber: 4,
-        //shape: "circle",
         axisName: {
-          color: "#428BD4",
+          color: "#352d2d",
         },
         splitArea: {
           areaStyle: {
-            color: ["#77EADF", "#26C3BE", "#64AFE9", "#428BD4"],
+            color: ["#77EADF", "#26C3BE", "#64AFE9", "#ffd7ab"],
             shadowColor: "rgba(0, 0, 0, 0.2)",
-            shadowBlur: 10,
+            shadowBlur: 5,
           },
         },
         axisLine: {

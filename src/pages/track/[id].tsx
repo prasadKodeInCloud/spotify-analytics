@@ -5,6 +5,8 @@ import AudioSectionsChart from "@/components/charts/audioSectionsChart";
 import { spotifyClient } from "@/lib/spotify-client";
 import BatteryGauge from "react-battery-gauge";
 import { useEffect } from "react";
+import GuageChart from "@/components/charts/guageChart";
+import BpmChart from "@/components/charts/bpmChart";
 
 const batteryOptions = {
   batteryBody: {
@@ -29,10 +31,10 @@ const batteryOptions = {
     interCellsGap: 1,
   },
   readingText: {
-    lightContrastColor: "#111",
-    darkContrastColor: "#7658d1",
+    lightContrastColor: "#352d2d",
+    darkContrastColor: "white",
     lowBatteryColor: "red",
-    fontFamily: "ui-sans-serif",
+    fontFamily: "arial",
     fontSize: 18,
     showPercentage: true,
   },
@@ -53,6 +55,13 @@ const Track: React.FC<{
   console.log("###trackFeatures info: ", trackFeatures);
   console.log("###trackAnalytics info: ", trackAnalytics);
 
+  const loudnessGourge = {
+    name: "Loudness",
+    min: -60,
+    max: 0,
+    value: trackAnalytics.track.loudness,
+  };
+
   return (
     <div className="p-3">
       <div className="flex flex-wrap md:flex-1 gap-1 ">
@@ -69,7 +78,6 @@ const Track: React.FC<{
                 loading="lazy"
               />
             </div>
-
             <div>
               <div>
                 <div className="flex flex-col space-y-2">
@@ -79,32 +87,44 @@ const Track: React.FC<{
                   </span>
                 </div>
               </div>
-              <div>
-                <span>Popularity </span>
-                <span className="inline-block px-2 text-sm text-white bg-green-200 rounded">
+              <div className="flex pt-1">
+                <div className="track-info">Popularity </div>
+                <div className="inline-block px-2 text-sm text-white bg-green-200 rounded">
                   {track.popularity}%
-                </span>
+                </div>
               </div>
-              <div>
-                <span>Duration </span>
-                <span className="inline-block px-2 text-sm text-white bg-orange-200 rounded">
+              <div className="flex pt-1">
+                <div className="track-info">Duration </div>
+                <div className="inline-block px-2 text-sm text-white bg-orange-200 rounded">
                   {Math.round((track.duration_ms * 100) / (60 * 1000)) / 100}{" "}
                   mins
-                </span>
+                </div>
               </div>
-              <div className="pt-4">
-                <span>Energy </span>
+              <div className="flex pt-1">
+                <div className="track-info">Energy </div>
                 <BatteryGauge
                   value={trackFeatures.energy * 100}
                   size={60}
                   customization={batteryOptions}
                 />
               </div>
+              <div className="flex pt-1">
+                <div className="track-info">Tempo </div>
+                <div className="inline-block px-2 text-sm text-white bg-purple-400 rounded">
+                  {Math.round(trackAnalytics.track.tempo * 100) / 100} BPM
+                </div>
+              </div>
+              <div className="p-1">
+                <BpmChart tempo={trackAnalytics.track.tempo} />
+              </div>
             </div>
           </div>
         </div>
-        <div className="border border-solid border-gray-200 h-52 basis-1/2 grow">
+        <div className="border border-solid border-gray-200 h-52 basis-1/3 grow shadow-md hover:shadow-lg">
           03
+        </div>
+        <div className="border border-solid border-gray-200 h-52 w-60 grow shadow-md hover:shadow-lg">
+          <GuageChart params={loudnessGourge} />
         </div>
       </div>
       <div className="flex flex-wrap md:flex-1 gap-1 pt-1">
